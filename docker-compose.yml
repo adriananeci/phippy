@@ -1,0 +1,15 @@
+web:
+  image: local/phippy
+  ports:
+   - "31380:80"
+  network: phippy
+
+etcd:
+  image: quay.io/coreos/etcd:3.4.3
+  ports:
+   - "2379:2379"
+  container_name: etcd
+  network: phippy
+
+networks:
+  - phippy
