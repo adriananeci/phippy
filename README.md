@@ -13,17 +13,16 @@ docker push <DOCKER_HUB_USER>/phippy
 ## Launch the app using Docker
 ```
 docker network create phippy
-docker run -d -p 2379:2379 --net phippy --name etcd quay.io/coreos/etcd:3.4.3
-docker run -d -p 31380:80 --net phippy--name phippy <DOCKER_HUB_USER>/phippy
+docker run -d -p 2379:2379 --net phippy --name etcd quay.io/coreos/etcd:3.3.4
+docker run -d -p 31380:80 --net phippy --name phippy <DOCKER_HUB_USER>/phippy
 ```
 
 Or you can use the existing scripts to build/push/run the app:
 
 ```
-cd docker
-./build
-./push
-./run 
+./docker_build.sh
+./docker_push.sh
+./docker_run.sh 
 ```
 
 ## Launch the app with Docker Compose
