@@ -25,12 +25,17 @@ Or you can use the existing scripts to build/push/run the app:
 ./docker_run.sh 
 ```
 
+## Test the app
+```
+curl localhost:31380
+```
+
 ## Launch the app with Docker Compose
 ```
 docker-compose up -d 
 ```
 
-## Test the app
+## Scale up the app with Docker Compose
 ```
-curl localhost:31380
+docker-compose up -d --scale web=5
 ```

@@ -1,15 +1,26 @@
-web:
-  image: local/phippy
-  ports:
-   - "31380:80"
-  network: phippy
+version: "3.7"
 
-etcd:
-  image: quay.io/coreos/etcd:v3.3.4
-  ports:
-   - "2379:2379"
-  container_name: etcd
-  network: phippy
+services:
+  web:
+    image: local/phippy:1.0
+    ports:
+     - "31380-31384:80"
+    networks:
+      - phippy
+    environment:
+      ETCD_HOST: etcd
+      ETCD_PORT: 2379
+    depends_on:
+      - etcd
+
+  etcd:
+    image: quay.io/coreos/etcd:v3.3.4
+    command: /usr/local/bin/etcd --advertise-client-urls http://0.0.0.0:2379 --listen-client-urls http://0.0.0.0:2379
+    ports:
+     - "2379:2379"
+    networks:
+      - phippy
 
 networks:
-  - phippy
+  phippy:
+    name: phippy
